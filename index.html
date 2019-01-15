@@ -1,0 +1,377 @@
+<html>
+<head>
+
+    <title>Donjonet</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="main.css">
+
+
+</head>
+
+
+<body>
+<div class="container">
+    <div class="main">
+        <div class="row">
+            <div class="row widthMax">
+                <div class="col-lg-4"><label>Donjonet Varient</label></div>
+                <div class="col-lg-8">
+                    <form action="">
+                        <input type="radio" name="varient" value="node" id="node" checked="checked"> Node<br>
+                        <input type="radio" name="varient" value="central" id="central"> Central<br>
+
+                    </form>
+                </div>
+            </div>
+            <div class="row widthMax">
+                <div class="col-lg-4"><label>Support Subscription Term</label></div>
+                <div class="col-lg-8">
+                    <form action="">
+                        <input type="radio" name="term" value="3" checked="checked"> 3 Years<br>
+                        <input type="radio" name="term" value="1"> 1 Years<br>
+                    </form>
+
+                </div>
+            </div>
+            <div class="row widthMax">
+                <div class="col-lg-4"><label>Maximum Concurrent Connections</label></div>
+                <div class="col-lg-8">
+                    <span>Requirement</span>
+                    <label>
+
+                        <input type="number" name="requirement" id="requirement" min="75" max="2000"/>
+                    </label>
+                    <button onclick="requirementSync()">Generate</button>
+                    <label>
+                        <span>Base License</span>
+                        <input type="text" id="base" disabled/>
+                    </label>
+                    <br/>
+                    <span class="incrementText">Incremental License : </span>
+                    <!--<label>-->
+
+                    <div class="top10 right">500 : <input type="text" id="increment500" disabled/></div>
+
+                    <div class="top10 right">250 : <input type="text" id="increment250" disabled/></div>
+                    <div class="top10 right">100 : <input type="text" id="increment100" disabled/></div>
+                    <div class="top10 right">50 : <input type="text" id="increment50" disabled/></div>
+                    <div class="top10 right">25 : <input type="text" id="increment25" disabled/></div>
+                    <div class="top10 right">10 : <input type="text" id="increment10" disabled/></div>
+                    <!--</label>-->
+                    <div style="margin-top:20px">
+                        <span>Total Available : </span>
+                        <label>
+                            <input type="text" id="total" disabled/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row widthMax">
+                <div class="col-lg-4"><label>Deployment Type</label></div>
+                <div class="col-lg-8">
+                    <form action="">
+                        <input type="radio" name="deployment" value="standalone" id="standalone" checked="checked">
+                        Stand Alone<br>
+                        <input type="radio" name="deployment" value="highavailability" id="highavailability"> High
+                        Availability (Redundant)<br>
+                    </form>
+
+
+                </div>
+            </div>
+            <div class="row widthMax">
+                <div class="col-lg-4"><label>Captive Portal</label></div>
+                <div class="col-lg-8">
+                    <form action="">
+                        <input type="radio" name="captive" value="no" id="no" checked="checked"> No, We will not be
+                        needing a captive
+                        portal
+                        implement<br>
+                        <input type="radio" name="captive" value="yes" id="yes"> Yes, we will require a captive
+                        portal<br>
+                    </form>
+
+
+                </div>
+            </div>
+            <div class="row widthMax">
+                <div class="col-lg-4"><label>Number Of Internet Connection</label></div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            Wan-Link
+                            <select id="connections">
+
+                            </select></div>
+                        <div class="col-lg-6">
+                            <div class="link1">Link speed <label>
+                                <span>Link - 1</span>
+                                <input type="number" id="links1" min="1" max="1000"/>
+                            </label> Mbps
+                            </div>
+                            <div class="hide link2 top20">Link speed <label>
+                                <span>Link - 2</span>
+                                <input type="number" id="links2" min="1" max="1000"/>
+                            </label> Mbps
+                            </div>
+                            <div class="hide link3 top20">Link speed <label>
+                                <span>Link - 3</span>
+                                <input type="number" id="links3" min="1" max="1000"/>
+                            </label> Mbps
+                            </div>
+                            <div class="hide link4 top20">Link speed <label>
+                                <span>Link - 4</span>
+                                <input type="number" id="links4" min="1" max="1000"/>
+                            </label> Mbps
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row widthMax">
+                <div class="col-lg-4 borderFit aligncenter">Show Solution Details</div>
+                <div class="col-lg-2 borderFit aligncenter">Request Quote For Above Configurations</div>
+                <div class="col-lg-2 aligncenter">Cant Fit Your Requirement Above</div>
+                <div class="col-lg-3 borderFit aligncenter">Post Custom Requirements</div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</body>
+
+<script>
+    $('input:empty, textarea:empty').closest('label').addClass('empty');
+
+    $('input').keyup(function () {
+        if ($(this).val().trim() !== '') {
+            $(this).closest('label').removeClass('empty');
+        } else {
+            $(this).closest('label').addClass('empty');
+        }
+    });
+
+    var baseArray1 = [75, 85, 100, 150, 200, 300, 450, 700];
+    var baseArray2 = [701, 1000, 1500, 2000];
+    var incrementArray = [10, 25, 50, 100, 250, 500];
+
+    function closest(array, array2, num) {
+        var ans;
+        if (num < 700) {
+            let temp = 0;
+            for (let i = 0; i <= array.length; i++) {
+                let diff = Math.abs(array[i] - num);
+                if (i === 0) {
+                    temp = diff;
+                    ans = array[i];
+                }
+                if (temp > diff && i !== 0) {
+                    temp = diff;
+                    ans = array[i]
+                }
+            }
+        } else {
+            let temp = 0;
+            for (let i = 0; i <= array2.length; i++) {
+                let diff = Math.abs(array2[i] - num);
+                if (i === 0) {
+                    temp = diff;
+                    ans = array2[i];
+                }
+                if (temp > diff && i !== 0) {
+                    temp = diff;
+                    ans = array2[i]
+                }
+            }
+
+        }
+
+
+        return ans;
+    }
+
+
+    function closestIncrement(array, base, nums) {
+        var ans = [];
+        let newbase = base;
+        var num = nums
+        let loop = true;
+        while (loop) {
+            let diff = Math.abs(num - newbase)
+            console.log(diff)
+            if (diff >= 500) {
+                newbase += 500
+                ans.push(500)
+            } else if (diff >= 250 && diff < 500) {
+                newbase += 250
+                ans.push(250)
+            } else if (diff >= 100 && diff < 250) {
+                newbase += 100
+                ans.push(100)
+            } else if (diff >= 50 && diff < 100) {
+                newbase += 50
+                ans.push(50)
+            } else if (diff >= 25 && diff < 50) {
+                newbase += 25
+                ans.push(25)
+            } else if (diff >= 10 && diff < 25) {
+                newbase += 10
+                ans.push(10)
+            } else {
+                loop = false;
+            }
+        }
+        console.log(ans)
+        return ans;
+    }
+
+    function requirementSync() {
+
+        let requirement = parseInt($("input[name='requirement']").val());
+        let maximum = 2000;
+        let min = 75
+        if (requirement > maximum || requirement < min)
+            alert(requirement + " has exceeded limit, Please contact sales service")
+        else {
+            /*call array name and desired value to be closet */
+            $("#base").closest('label').removeClass('empty');
+            let base = closest(baseArray1, baseArray2, requirement);
+            $("#base").val(base);
+
+
+            let increment = closestIncrement(incrementArray, parseInt(base), requirement);
+            let count500 = 0
+            let count250 = 0
+            let count100 = 0
+            let count50 = 0
+            let count25 = 0
+            let count10 = 0
+            let totals = 0;
+            for (var i = 0; i < increment.length; i++) {
+                if (increment[i] === 500) {
+                    count500++
+                    totals += 500
+                }
+                if (increment[i] === 250) {
+                    count250++
+                    totals += 250
+                }
+                if (increment[i] === 100) {
+                    count100++
+                    totals += 100
+                }
+                if (increment[i] === 50) {
+                    count50++
+                    totals += 50
+                }
+                if (increment[i] === 25) {
+                    totals += 25
+                    count25++
+                }
+                if (increment[i] === 10) {
+                    totals += 10
+                    count10++
+                }
+            }
+            $("#increment500").val(count500);
+            $("#increment250").val(count250);
+            $("#increment100").val(count100);
+            $("#increment50").val(count50);
+            $("#increment25").val(count25);
+            $("#increment10").val(count10);
+            let grandTotal = totals + base
+            let total = $("#total").val(grandTotal);
+        }
+    }
+
+
+    function dynamicSync() {
+        let varient = $("input[name='varient']:checked").val();
+        let term = $("input[name='term']:checked").val();
+        let total = $("#total").val();
+        let deployment = $("input[name='deployment']:checked").val();
+        let captive = $("input[name='captive']:checked").val();
+    }
+
+    $('select#connections').on('change', function () {
+        // alert( this.value );
+        var value = parseInt(this.value)
+        if (value === 1) {
+            $(".link1").show();
+            $(".link2").hide();
+            $(".link3").hide();
+            $(".link4").hide();
+        } else if (value === 2) {
+            $(".link1").show();
+            $(".link2").show();
+            $(".link3").hide();
+            $(".link4").hide();
+        } else if (value === 3) {
+            $(".link1").show();
+            $(".link2").show();
+            $(".link3").show();
+            $(".link4").hide();
+        } else if (value === 4) {
+            $(".link1").show();
+            $(".link2").show();
+            $(".link3").show();
+            $(".link4").show();
+        }
+    });
+
+    setInterval(linkGenrate, 1000);
+
+    function linkGenrate() {
+        let deployment = $("input[name='deployment']:checked").val();
+        let captive = $("input[name='captive']:checked").val();
+        var ports = 4;
+
+        if (deployment === 'highavailability') {
+            ports -= 1
+        }
+
+        if (captive === 'yes') {
+            ports -= 1
+        }
+
+        if (ports === 4) {
+            var select = document.getElementById("connections");
+            select.options.length = 0;
+            $('#connections').append(" <option value=\"1\">1</option>\n" +
+                "                                <option value=\"2\">2</option>\n" +
+                "                                <option value=\"3\">3</option>\n" +
+                "                                <option value=\"4\">4</option>");
+        } else if (ports === 3) {
+            var select = document.getElementById("connections");
+            select.options.length = 0;
+            $('#connections').append(" <option value=\"1\">1</option>\n" +
+                "                                <option value=\"2\">2</option>\n" +
+                "                                <option value=\"3\">3</option>\n");
+        } else if (ports === 2) {
+            var select = document.getElementById("connections");
+            select.options.length = 0;
+            $('#connections').append(" <option value=\"1\">1</option>\n" +
+                "                                <option value=\"2\">2</option>\n");
+        }
+
+
+    }
+
+
+</script>
+</html>
