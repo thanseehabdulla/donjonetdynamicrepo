@@ -4,15 +4,19 @@
     <title>Donjonet</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"></script>
 
 
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
 
 
@@ -24,7 +28,7 @@
     <div class="main">
         <div class="row">
             <div class="row widthMax">
-                <div class="col-lg-4"><label>Donjonet Varient</label></div>
+                <div class="col-lg-4"><label >Donjonet Varient <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="hover me"></i></label></div>
                 <div class="col-lg-8">
                     <form action="">
                         <input type="radio" name="varient" value="node" id="node" checked="checked"> Node<br>
@@ -34,7 +38,7 @@
                 </div>
             </div>
             <div class="row widthMax">
-                <div class="col-lg-4"><label>Support Subscription Term</label></div>
+                <div class="col-lg-4"><label>Support Subscription Term <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="hover me"></i></label></div>
                 <div class="col-lg-8">
                     <form action="">
                         <input type="radio" name="term" value="3" checked="checked"> 3 Years<br>
@@ -44,14 +48,14 @@
                 </div>
             </div>
             <div class="row widthMax">
-                <div class="col-lg-4"><label>Maximum Concurrent Connections</label></div>
+                <div class="col-lg-4"><label>Maximum Concurrent Connections <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="hover me"></i></label></div>
                 <div class="col-lg-8">
                     <span>Requirement</span>
                     <label>
 
                         <input type="number" name="requirement" id="requirement" min="75" max="2000"/>
                     </label>
-                    <button onclick="requirementSync()">Generate</button>
+                    <button class="button4" onclick="requirementSync()">Generate</button>
                     <label>
                         <span>Base License</span>
                         <input type="text" id="base" disabled/>
@@ -77,7 +81,7 @@
                 </div>
             </div>
             <div class="row widthMax">
-                <div class="col-lg-4"><label>Deployment Type</label></div>
+                <div class="col-lg-4"><label>Deployment Type <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="hover me"></i></label></div>
                 <div class="col-lg-8">
                     <form action="">
                         <input type="radio" name="deployment" value="standalone" id="standalone" checked="checked">
@@ -90,7 +94,7 @@
                 </div>
             </div>
             <div class="row widthMax">
-                <div class="col-lg-4"><label>Captive Portal</label></div>
+                <div class="col-lg-4"><label>Captive Portal <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="hover me"></i></label></div>
                 <div class="col-lg-8">
                     <form action="">
                         <input type="radio" name="captive" value="no" id="no" checked="checked"> No, We will not be
@@ -105,7 +109,7 @@
                 </div>
             </div>
             <div class="row widthMax">
-                <div class="col-lg-4"><label>Number Of Internet Connection</label></div>
+                <div class="col-lg-4"><label>Number Of Internet Connection <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="hover me"></i></label></div>
                 <div class="col-lg-8">
                     <div class="row">
                         <div class="col-lg-6">
@@ -139,18 +143,25 @@
                 </div>
             </div>
             <div class="row widthMax">
-                <div class="col-lg-4 borderFit aligncenter">Show Solution Details</div>
-                <div class="col-lg-2 borderFit aligncenter">Request Quote For Above Configurations</div>
-                <div class="col-lg-2 aligncenter">Cant Fit Your Requirement Above</div>
-                <div class="col-lg-3 borderFit aligncenter">Post Custom Requirements</div>
+                <div class="col-lg-3  "><a onclick="solutionDetail()" class="button bottom20">Show Solution Details</a></div>
+                <div class="col-lg-3  "><a class="button3 bottom20" onclick="requestQuote()">Request Quote For Above Configurations</a></div>
+                <div class="col-lg-3 top20" >Cant Fit Your Requirement Above</div>
+                <div class="col-lg-3  "><a onclick="customRequirement()" class="button2 bottom20">Post Custom Requirements</a></div>
             </div>
 
         </div>
 
 
     </div>
-
-
+    <div class="hide solutiondetail">
+        <p>we are in solution detail page</p>
+    </div>
+    <div class="requestquote hide">
+        <p>we are in reqwuest page</p>
+    </div>
+    <div class="postcustomrequirement hide">
+        <p>we are in custom requiremnt</p>
+    </div>
 </div>
 
 </body>
@@ -243,9 +254,10 @@
     function requirementSync() {
 
         let requirement = parseInt($("input[name='requirement']").val());
+        // alert(requirement)
         let maximum = 2000;
         let min = 75
-        if (requirement > maximum || requirement < min)
+        if (requirement > maximum || requirement < min || requirement === null || isNaN(requirement) || requirement === undefined)
             alert(requirement + " has exceeded limit, Please contact sales service")
         else {
             /*call array name and desired value to be closet */
@@ -372,6 +384,27 @@
 
     }
 
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    function solutionDetail(){
+        $(".main").hide();
+        $(".requestquote").hide();
+        // alert("solutiuomn detail")
+    }
+
+    function requestQuote() {
+        $(".main").hide();
+        $(".requestquote").hide();
+        // alert("request quote")
+    }
+
+    function customRequirement(){
+        $(".main").hide();
+        $(".requestquote").hide();
+        // alert("custom requirement")
+    }
 
 </script>
 </html>
