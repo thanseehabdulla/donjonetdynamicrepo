@@ -146,22 +146,22 @@
                         <div class="col-lg-6">
                             <div class="link1">Link speed <label>
                                 <span>Link - 1</span>
-                                <input type="number" id="links1" min="1" max="1000"/>
+                                <input type="number" onblur="validateLink()" id="links1" min="1" max="1000"/>
                             </label> Mbps
                             </div>
                             <div class="hide link2 top20">Link speed <label>
                                 <span>Link - 2</span>
-                                <input type="number" id="links2" min="1" max="1000"/>
+                                <input type="number" onblur="validateLink()" id="links2" min="1" max="1000"/>
                             </label> Mbps
                             </div>
                             <div class="hide link3 top20">Link speed <label>
                                 <span>Link - 3</span>
-                                <input type="number" id="links3" min="1" max="1000"/>
+                                <input type="number" onblur="validateLink()" id="links3" min="1" max="1000"/>
                             </label> Mbps
                             </div>
                             <div class="hide link4 top20">Link speed <label>
                                 <span>Link - 4</span>
-                                <input type="number" id="links4" min="1" max="1000"/>
+                                <input type="number" onblur="validateLink()" id="links4" min="1" max="1000"/>
                             </label> Mbps
                             </div>
                         </div>
@@ -670,6 +670,8 @@
         linkGenrate()
     });
 
+    var ports = 4;
+
     function linkGenrate() {
         $(".link1").show();
         $(".link2").hide();
@@ -683,7 +685,7 @@
 
         let deployment = $("input[name='deployment']:checked").val();
         let captive = $("input[name='captive']:checked").val();
-        var ports = 4;
+        ports = 4;
 
         if (deployment === 'highavailability') {
             ports -= 1
@@ -748,6 +750,56 @@
         $(".main").hide();
         $(".solutiondetail").show();
         // alert("custom requirement")
+    }
+
+    function validateLink() {
+        var temp = ports + 1
+        var links1 = 0;
+        var links2 = 0
+        var links3 = 0
+        var links4 = 0
+        if ($('.link1').is(':visible')) {
+            temp -=1
+            links1 = parseInt($('input#links1').val());
+            if(links1 > 1000)
+                alert("exceeded port 1Gb capacity")
+        }
+        if ($('.link2').is(':visible')) {
+            temp-=1
+            links2 = parseInt($('input#links2').val());
+            if(links2 > 1000)
+                alert("exceeded port 1Gb capacity")
+        }
+        if ($('.link3').is(':visible')) {
+            temp-=1
+            links3 = parseInt($('input#links3').val());
+            if(links3 > 1000)
+                alert("exceeded port 1Gb capacity")
+        }
+        if ($('.link4').is(':visible')) {
+            temp-=1
+            links4 = parseInt($('input#links4').val());
+            if(links4 > 1000)
+                alert("exceeded port 1Gb capacity")
+        }
+        var grandTotal = links1 + links2 + links3 + links4
+
+        if (grandTotal > 4000) {
+            temp -= 4
+        } else if (grandTotal > 3000) {
+            temp -= 3
+        } else if (grandTotal > 2000) {
+            temp -= 2
+        } else if (grandTotal > 1000) {
+            temp -= 1
+        }
+
+
+        if (temp <= 0) {
+            alert("you have exceeded maximum band")
+        }
+
+
     }
 
 </script>
