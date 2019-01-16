@@ -785,9 +785,6 @@
 
         var grandTotal = links1 + links2 + links3 + links4
 
-        if (grandTotal > 2000) {
-            alert("Exceeded maximum limit")
-        }
 
         if (grandTotal > 4000) {
             temp -= 4
@@ -799,9 +796,8 @@
             temp -= 1
         }
 
-
-        if (temp <= 0) {
-            alert("you have exceeded maximum band")
+        if (grandTotal > 2000 || temp <= 0) {
+            alert("Exceeded maximum limit")
         }
 
 
