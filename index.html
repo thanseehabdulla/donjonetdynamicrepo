@@ -759,30 +759,35 @@
         var links3 = 0
         var links4 = 0
         if ($('.link1').is(':visible')) {
-            temp -=1
+            temp -= 1
             links1 = parseInt($('input#links1').val());
-            if(links1 > 1000)
+            if (links1 > 1000)
                 alert("exceeded port 1Gb capacity")
         }
         if ($('.link2').is(':visible')) {
-            temp-=1
+            temp -= 1
             links2 = parseInt($('input#links2').val());
-            if(links2 > 1000)
+            if (links2 > 1000)
                 alert("exceeded port 1Gb capacity")
         }
         if ($('.link3').is(':visible')) {
-            temp-=1
+            temp -= 1
             links3 = parseInt($('input#links3').val());
-            if(links3 > 1000)
+            if (links3 > 1000)
                 alert("exceeded port 1Gb capacity")
         }
         if ($('.link4').is(':visible')) {
-            temp-=1
+            temp -= 1
             links4 = parseInt($('input#links4').val());
-            if(links4 > 1000)
+            if (links4 > 1000)
                 alert("exceeded port 1Gb capacity")
         }
+
         var grandTotal = links1 + links2 + links3 + links4
+
+        if (grandTotal > 2000) {
+            alert("Exceeded maximum limit")
+        }
 
         if (grandTotal > 4000) {
             temp -= 4
